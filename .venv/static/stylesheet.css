@@ -1,0 +1,89 @@
+body{
+    background-color: white;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+    text-decoration: underline;
+    text-align: center;
+}
+/*Data search page*/
+.searchDataArticle, #dataVis{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+}
+.newestData{
+    grid-column: 2;
+    background-color: #dad7cd;
+    text-align: center;
+    padding: 5% 10%;
+
+}
+#searchForm{
+    background-color: #A3B18A;
+    display: block;
+    padding: 10px 10px;
+    border-radius: 5%;
+    color:black;
+}
+#results{
+    columns: 2;
+    padding: 10px 10px;
+}
+.searchData, #graphExplained{
+    grid-column: 1;
+    background-color: #446444;
+    text-align: center;
+    padding: 10% 5%;
+    color:white;
+}
+#table2018Cap{
+    display: block;
+    padding: 10px 10px;
+}
+#table2018Div{
+    columns: 2;
+}
+/*Homepage*/
+#homepage{
+    background-color: #dad7cd;
+    border-radius: 5%;
+    padding: 10px 10px;
+    margin: 30px;
+}
+/*Data visualisation page*/
+#graphs{
+    grid-column: 2;
+}
+
+/*Global*/
+#siteNav{
+    background-color: #95d5b2;
+    top:0;
+    position: sticky;
+    overflow: hidden;
+    
+}
+#siteNav a{
+    display:block;
+    text-decoration: none;
+    float: left;
+    padding: 10px 20px;
+    text-align: center;
+    color: black;
+}
+
+#siteNav a:hover{
+    background-color: #344e41;
+    color:white;
+}
+footer{
+    background-color: #95d5b2;
+    bottom:0;
+    overflow: hidden;
+    position:fixed;
+    right:0;
+    left:0;
+}

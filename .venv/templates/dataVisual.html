@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Data view{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block header %}Data visualisation{% endblock %}
+{% block article %}
+<article id = "dataVis">
+<div id = "graphExplained">
+<p>Data visualisation, currently this page is a work in progress but matplotlib is running on the flask backend to create graphs.</p>
+<p>Here is an example of all countries over the population of 80000000:
+</p>
+<p>Given more time, I would like to add an interactive element where a user could find coutries and datas to create custom graphs.</p>
+</div>
+
+<div id = "graphs">
+    <img src = "{{url_for('static', filename='pieChartExample.jpg')}}" alt="A image of a pie chart holding some countries">
+</div>
+</article>
+{% endblock %}

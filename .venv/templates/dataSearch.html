@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Data Search{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block header %}Data Search{% endblock %}
+{% block article %}
+<article class = "searchDataArticle">
+    <div class = "searchData">
+        <div id = "searchForm">
+            <h2>Search the dataset</h2>
+
+            <form action="datasearch" method="POST" > 
+                <label for = "countrySelect">Search for a country:</label>
+                <select for = "countrySelect" id = "countrySelect" name = "countrySelect">
+                    {%for term in data["flagData"]['data'] %}
+                        <option value = "{{term['iso3']}}">{{ term['unicodeFlag']}} {{ term['name'] }} </option>
+                    {% endfor %}
+                </select>
+                <button>Search</button>
+            </form>
+
+            {% if "requestedData" in data %} <!--Checking for a previous search-->
+                {% if data["requestedData"]["error"] == True %} <!--Checking for the country not having records-->
+                    <p>There are no population records for this country</p>
+                {% else %}
+                    <script>document.getElementById("countrySelect").value = "{{ data['requestedData']['data']['iso3'] }}";</script> <!--Remebers the seach in the select bar-->
+                    
+                    <h2>Country: {{data["requestedData"]["data"]["country"]}}</h2><!--Prints the country thats been searched for-->
+
+                    <form action="datasearch" method="POST"> <!--Second form for date searches-->
+                        <label for = "dateSelect">Search for a year:</label>
+                        <select for = "dateSelect" id = "dateSelect" name = "dateSelect">
+                            {%for term in data["requestedData"]["data"]["populationCounts"] %}
+                                <option value = "{{term['year']}}">{{term['year']}} </option>
+                            {% endfor %}
+                        </select>
+                        <button>Search</button>
+                    </form>
+                    {% if "requestedDate" in data %}
+                        <script>document.getElementById("dateSelect").value = "{{ data['requestedDate'][0] }}";</script><!--Remebers the seach in the select bar-->
+                        <p>The population of {{data["requestedData"]["data"]["country"]}} in {{data["requestedDate"][0]}} was {{data["requestedDate"][1]}}</p>
+                    {% endif %}
+                {% endif %}
+            </div>
+
+            <caption>
+                The year and population
+            </caption>
+        <div id = "results">
+        <table>
+            <thead>
+                <th scope="col">Year</th>
+                <th scope="col">Population</th>
+            </thead>
+            <tbody>
+            {% if data["requestedData"]["error"] != True %}
+                {%for term in data["requestedData"]["data"]["populationCounts"] %} <!--Prints the country data thats been searched for-->
+                        <tr>
+                        <th scope="row">{{term['year']}}</th>
+                        <th scope="row">{{term['value']}}</th>
+                        </tr>
+                {% endfor %}
+            {% endif %}
+            </tbody>
+        </table>    
+    {% endif %}
+    </div>  
+    </div>  
+
+
+    <div class = "newestData">
+        <div id = "table2018Cap">
+            <h2>Country population table for 2018</h2>
+        </div>
+        <caption>
+            Countries and thier population
+        </caption>
+        <div id = "table2018Div">
+            <table id = "population2018Table">
+                <thead>
+                    <th scope="col">Country</th>
+                    <th scope="col">2018 population</th>
+                </thead>
+                <tbody>
+                {% set start = {"flag": False} %} <!--This sets a flag system to remove non-country results-->
+                {%for term in data["populationData"]['data'] %}
+                    {% if  term['country'] == "Afghanistan" %} <!--Finds the first country and sets the flag to True-->
+                        {% if start.update({"flag": True}) %} {% endif %} <!--Alters the flag-->
+                    {% endif %}
+                    {%if start.flag %}  <!--Adds all countries and thier population to a table-->
+                        <tr>
+                        <th scope="row">{{term['country']}}</th>
+                        <th scope="row">{{term['populationCounts'][-1]['value']}}</th>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+                </tbody>
+            </table>    
+        </div>
+    </div>
+</article>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Home page{% endblock %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+
+{% block header %}Home page{% endblock %}
+{% block article %}
+
+<article id = "homepage">
+<p>This is a web application for the searchability and visability of population data.</p>
+<p>On this website there are two pages:</p>
+<ul>
+    <li>A search tool - Search through each countries population records</li>
+    <li>A visualisation page - a prototype for graph creation</li>
+</ul>
+<p>This page was created using:</p>
+<ul>
+    <li>Flask</li>
+    <li>Jinja 2</li>
+    <li>matplotlib library</li>
+    <li>Requests library</li>
+</ul>
+<p>All text was tested on the <a href = https://webaim.org/resources/contrastchecker>web aim contrast checker</a> to ensure readability</p>
+</article>
+{% endblock %}
