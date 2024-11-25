@@ -9,3 +9,11 @@ Population site
 + Displaying country data with population data
 + Simple to see
 + Easy to use
+## Libraries and tools:
+frontend: HTML, CSS and Javascript
+backend: Flask
++ matplotlib - graph creation on the data visualisation page
++ Requests - handling rest api data
++ jinja2 - template tool build into flask, used to create website base
+## Creation and Design process
+The frontend was design using paper sketches which then informed the research for a backend and potential tools to use.
