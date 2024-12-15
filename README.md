@@ -15,5 +15,27 @@ backend: Flask
 + matplotlib - graph creation on the data visualisation page
 + Requests - handling rest api data
 + jinja2 - template tool build into flask, used to create website base
-## Creation and Design process
-The frontend was design using paper sketches which then informed the research for a backend and potential tools to use.
+## Installation:
+Clone this directory.
+### Creating a venv and installing flask (windows)
+Create a venv inside using flask with:
+```
+python3 -m venv .venv
+```
+Activate the venv:
+```
+.venv\Scripts\activate
+```
+Install flask
+```
+pip install Flask
+```
+### Installing the libraries
+Requests library:
+```
+pip install requests
+```
+Matplotlib:
+```
+pip install matplotlib
+```
